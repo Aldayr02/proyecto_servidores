@@ -13,15 +13,15 @@ app.use(express.json());
 app.use(routes);
 
 async function start() {
-    try {
-        await mongoose.connect(db_url);
-        console.log('Connected to database');
-        app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
-        });
-    } catch (e) {
-        console.log('failed to connect to database ', e);
-    }
+  try {
+    await mongoose.connect(db_url);
+    console.log('Connected to database');
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (e) {
+    console.log('failed to connect to database ', e);
+  }
 }
 
 start();

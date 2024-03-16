@@ -4,6 +4,6 @@ const router = require('express').Router();
 const userController = new UsersController();
 
 router.post('/signUp', userController.register);
-//router.post('/login', userController.login);
+router.post('/login', userController.login);
 
 export default router;
