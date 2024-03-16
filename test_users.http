@@ -1,0 +1,13 @@
+### api works
+GET http://localhost:3000
+
+### register
+POST http://localhost:3000/users/signUp
+Content-Type: application/json
+
+{
+    "name": "uziel",
+    "email": "uziel@email.com",
+    "password": "123456",
+    "role": "admin"
+}
