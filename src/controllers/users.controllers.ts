@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/users.models';
 import { response_status } from '../utils/response-status';
-import { error } from 'console';
 
 export class UsersController {
   register(req: Request, res: Response) {
