@@ -1,4 +1,4 @@
-module.exports = {
+export const response_status = {
     SUCCESS: 200,
     CREATED: 201,
     BAD_REQUEST: 400,
