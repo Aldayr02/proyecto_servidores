@@ -1,4 +1,5 @@
 import { UsersController } from '../controllers/users.controllers';
+import uploadS3 from '../middlewares/uploadS3-middleware';
 
 const router = require('express').Router();
 const userController = new UsersController();
@@ -58,5 +59,7 @@ router.post('/signUp', userController.register);
  *         description: user not found
  */
 router.post('/login', userController.login);
+
+router.post('/s3upload', uploadS3.single('foto'));
 
 export default router;

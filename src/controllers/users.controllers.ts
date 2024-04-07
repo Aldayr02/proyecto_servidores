@@ -40,4 +40,6 @@ export class UsersController {
         res.status(response_status.CREATED).send(`Invalid credentials - ${e}`);
       });
   }
+
+  upload_user_image(req: Request, res: Response) {}
 }
