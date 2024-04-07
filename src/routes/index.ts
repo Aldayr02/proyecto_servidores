@@ -7,6 +7,18 @@ const router = Router();
 router.use('/users', userRoutes);
 router.use('/novels', novelsRoutes);
 
+/**
+ * @swagger
+ * /:
+ *  get:
+ *    description: Use to test the router
+ *    tags: [Index]
+ *    responses:
+ *      200:
+ *        description: Success
+ *      400:
+ *        description: Bad Request
+ */
 router.get('/', (req: Request, res: Response) => {
   res.send('router works!');
 });

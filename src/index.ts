@@ -1,6 +1,9 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
+import swaggerJSDoc from 'swagger-jsdoc';
+import { serve, setup } from 'swagger-ui-express';
+import { swaggerConfig } from './../swagger.config';
 
 require('dotenv').config();
 
@@ -11,6 +14,9 @@ const db_url = process.env.DB_URL;
 
 app.use(express.json());
 app.use(routes);
+
+const swaggerDocs = swaggerJSDoc(swaggerConfig);
+app.use('/api-docs', serve, setup(swaggerDocs));
 
 async function start() {
   try {
