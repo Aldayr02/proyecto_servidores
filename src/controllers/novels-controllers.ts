@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { response_status } from 'utils/response-status';
-import NovelModel from 'models/novels-model';
+import { response_status } from '../utils/response-status';
+import NovelModel from '../models/novels-model';
 
 export class NovelsController {
   get_novel(req: Request, res: Response) {
