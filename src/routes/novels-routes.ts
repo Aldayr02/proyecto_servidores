@@ -9,7 +9,7 @@ router.use(auth_middleware);
 
 /**
  * @swagger
- * /novel/{title}:
+ * /novels/{title}:
  *   get:
  *     summary: Get a novel by title
  *     tags: [Novels]
@@ -51,7 +51,7 @@ router.get('/:title', Novel.get_novel);
 
 /**
  * @swagger
- * /novel/{title}:
+ * /novels/{title}:
  *   put:
  *     summary: Update a new novel
  *     tags: [Novels]
@@ -88,11 +88,11 @@ router.get('/:title', Novel.get_novel);
  *       400:
  *         description: Bad request
  */
-router.put('/:title', Novel.create_novel);
+router.put('/:title', Novel.update_novel);
 
 /**
  * @swagger
- * /novel:
+ * /novels:
  *   post:
  *     summary: Create a novel by title
  *     tags: [Novels]
@@ -125,11 +125,11 @@ router.put('/:title', Novel.create_novel);
  *       404:
  *         description: Novel not found
  */
-router.post('/', Novel.update_novel);
+router.post('/', Novel.create_novel);
 
 /**
  * @swagger
- * /novel/{title}:
+ * /novels/{title}:
  *   delete:
  *     summary: Delete a novel by title
  *     tags: [Novels]

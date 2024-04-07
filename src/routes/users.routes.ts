@@ -5,7 +5,7 @@ const userController = new UsersController();
 
 /**
  * @swagger
- * /signup:
+ * /users/signup:
  *   post:
  *     summary: Create a new user
  *     tags: [Users]
@@ -35,7 +35,7 @@ router.post('/signUp', userController.register);
 
 /**
  * @swagger
- * /signup:
+ * /users/login:
  *   post:
  *     summary: Login a user
  *     tags: [Users]
