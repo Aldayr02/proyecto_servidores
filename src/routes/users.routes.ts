@@ -1,5 +1,6 @@
 import { UsersController } from '../controllers/users.controllers';
 import uploadS3 from '../middlewares/uploadS3-middleware';
+import { Router, Request, Response } from 'express';
 
 const router = require('express').Router();
 const userController = new UsersController();
@@ -60,6 +61,8 @@ router.post('/signUp', userController.register);
  */
 router.post('/login', userController.login);
 
-router.post('/s3upload', uploadS3.single('foto'));
+router.post('/s3upload', uploadS3.single('foto'), (req: Request, res: Response) => {
+  res.send(`Image uploaded`);
+});
 
 export default router;

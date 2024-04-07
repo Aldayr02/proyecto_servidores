@@ -33,3 +33,31 @@ Content-Type: application/json
     "password": "123456",
     "role": "admin"
 }
+
+
+###
+PUT http://localhost:3001/novels/Shadow?token=123 
+Content-Type: application/json
+
+{
+    "title": "Shadow",
+    "author": "Ashtorias",
+    "summary": "Sunny and Nephis",
+    "rank": "1",
+    "status": "Ongoing",
+    "categories": "[Fantasy]",
+    "chapters": "1088",
+    "comments": "[]",
+}
+
+
+### 
+POST http://localhost:3001/users/s3upload
+Content-Type: multipart/form-data; boundary=mi-boundary
+
+--mi-boundary
+Content-Disposition: form-data; name="foto"; filename="A.jpg"
+Content-Type: image/jpeg
+
+C:\Users\alday\Desktop\TECNOLOGIAS DE DESARROLLO EN EL SERVIDOR\proyecto_servidores\A.jpg
+--mi-boundary--
