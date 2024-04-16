@@ -1,6 +1,7 @@
 import { UsersController } from '../controllers/users.controllers';
 import uploadS3 from '../middlewares/uploadS3-middleware';
 import { Router, Request, Response } from 'express';
+import passport from 'passport';
 
 const router = require('express').Router();
 const userController = new UsersController();
@@ -64,5 +65,17 @@ router.post('/login', userController.login);
 router.post('/s3upload', uploadS3.single('foto'), (req: Request, res: Response) => {
   res.send(`Image uploaded`);
 });
+
+router.get('/google', passport.authenticate('google', { 
+  scope: ['profile', 'email'] 
+}));
+
+router.get('/callback', passport.authenticate('google', { 
+      failureRedirect: '/login' 
+  }),
+  (req: Request, res: Response) => {
+    res.redirect('/'); // Enviar a home
+  }
+);
 
 export default router;

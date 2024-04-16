@@ -4,6 +4,7 @@ import routes from './routes';
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { swaggerConfig } from './../swagger.config';
+import { googleAuth } from 'middlewares/google_auth';
 
 require('dotenv').config();
 
@@ -13,6 +14,7 @@ let port = process.env.PORT || 4000;
 const db_url = process.env.DB_URL;
 
 app.use(express.json());
+googleAuth(app);
 app.use(routes);
 
 const swaggerDocs = swaggerJSDoc(swaggerConfig);
