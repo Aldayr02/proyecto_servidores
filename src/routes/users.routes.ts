@@ -71,11 +71,11 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/callback', passport.authenticate('google', { 
-      failureRedirect: '/login' 
-  }),
-  (req: Request, res: Response) => {
-    res.redirect('/'); // Enviar a home
-  }
+  failureRedirect: '/login' 
+}),
+(req: Request, res: Response) => {
+res.redirect('/'); // Enviar a home
+}
 );
 
 export default router;

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { response_status } from '../utils/response-status';
+import { response_status } from '../utils/response_status';
 import NovelModel from '../models/novels-model';
 
 export class NovelsController {

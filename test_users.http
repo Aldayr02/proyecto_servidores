@@ -61,3 +61,7 @@ Content-Type: image/jpeg
 
 C:\Users\alday\Desktop\TECNOLOGIAS DE DESARROLLO EN EL SERVIDOR\proyecto_servidores\A.jpg
 --mi-boundary--
+
+
+###
+GET http://localhost:3000/google/callback

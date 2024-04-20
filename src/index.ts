@@ -4,7 +4,7 @@ import routes from './routes';
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { swaggerConfig } from './../swagger.config';
-import { googleAuth } from 'middlewares/google_auth';
+import { googleAuth } from './middlewares/google_auth';
 
 require('dotenv').config();
 
