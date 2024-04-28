@@ -18,6 +18,18 @@ app.use(routes);
 const swaggerDocs = swaggerJSDoc(swaggerConfig);
 app.use('/api-docs', serve, setup(swaggerDocs));
 
+const socketIO = require('socket.io');
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log(`Se conecto un cliente IO`);
+
+  socket.on('messages', (data) => {
+    console.log(`Recibi un mensaje: ${data}`);
+    socket.broadcast.emit('messages', 'Someone did a click');
+  });
+});
+
 async function start() {
   try {
     await mongoose.connect(db_url);
