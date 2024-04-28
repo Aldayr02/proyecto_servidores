@@ -51,6 +51,9 @@ export class NovelsController {
       comments: req.body.comments,
     };
 
+    const socket = io('http://localhost:3000');
+    socket.emit('messages', counter);
+
     NovelModel.updateOne(data)
       .then((response) => {
         res.send(response);
