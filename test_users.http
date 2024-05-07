@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3001/novels/Shadow?token=123 
+PUT http://localhost:3001/novels/Shadow?token=123
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 }
 
 
-### 
+###
 POST http://localhost:3001/users/s3upload
 Content-Type: multipart/form-data; boundary=mi-boundary
 
