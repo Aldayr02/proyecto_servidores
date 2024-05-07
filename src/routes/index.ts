@@ -6,6 +6,7 @@ const router = Router();
 
 router.use('/users', userRoutes);
 router.use('/novels', novelsRoutes);
+router.use('/google', userRoutes);
 
 /**
  * @swagger
