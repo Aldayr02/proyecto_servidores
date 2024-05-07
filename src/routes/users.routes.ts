@@ -66,16 +66,21 @@ router.post('/s3upload', uploadS3.single('foto'), (req: Request, res: Response) 
   res.send(`Image uploaded`);
 });
 
-router.get('/google', passport.authenticate('google', { 
-  scope: ['profile', 'email'] 
-}));
+router.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
+);
 
-router.get('/callback', passport.authenticate('google', { 
-  failureRedirect: '/login' 
-}),
-(req: Request, res: Response) => {
-res.redirect('/'); // Enviar a home
-}
+router.get(
+  '/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/login',
+  }),
+  (req: Request, res: Response) => {
+    res.redirect('/'); // Enviar a home
+  }
 );
 
 export default router;
