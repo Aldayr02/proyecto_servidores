@@ -32,6 +32,7 @@ Content-Type: application/json
     "email": "uziel@email.com",
     "password": "123456",
     "role": "admin"
+<<<<<<< HEAD
 }
 
 
@@ -65,3 +66,6 @@ C:\Users\alday\Desktop\TECNOLOGIAS DE DESARROLLO EN EL SERVIDOR\proyecto_servido
 
 ###
 GET http://localhost:3000/google/callback
+=======
+}
+>>>>>>> uziel

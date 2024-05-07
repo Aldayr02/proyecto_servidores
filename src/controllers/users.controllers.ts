@@ -22,25 +22,22 @@ export class UsersController {
 
   login(req: Request, res: Response) {
     const data = {
-        email : req.body.email,
-        password : req.body.password
-    }
+      email: req.body.email,
+      password: req.body.password,
+    };
 
-    User.findOne(data).then(response => {
-        if(response) {
-            const data = {
-                name : response.name,
-                email : response.email,
-            }
+    console.log(data.email);
 
-            const token = "123";
-            res.status(response_status.SUCCESS).send({token});                
-
-        } else {
-            res.status(response_status.UNAUTHORIZED).send('Invalid credentials');
+    User.findOne({ name: 'uzie' })
+      .then((response) => {
+        if (response == null) {
+          throw new Error(`${response.errors}`);
         }
-    }).catch(e => {
-        res.status(response_status.BAD_REQUEST).send('failed to login');
-    })
-}
+
+        res.status(response_status.CREATED).send(`Valid credentials - ${response}`);
+      })
+      .catch((e) => {
+        res.status(response_status.CREATED).send(`Invalid credentials - ${e}`);
+      });
+  }
 }

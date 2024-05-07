@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
+
 import { response_status } from '../utils/response_status';
 import NovelModel from '../models/novels-model';
+
 
 export class NovelsController {
   get_novel(req: Request, res: Response) {
@@ -50,9 +52,6 @@ export class NovelsController {
       chapters: req.body.chapters,
       comments: req.body.comments,
     };
-
-    const socket = io('http://localhost:3000');
-    socket.emit('messages', counter);
 
     NovelModel.updateOne(data)
       .then((response) => {

@@ -1,10 +1,13 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
+<<<<<<< HEAD
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { swaggerConfig } from './../swagger.config';
 import { googleAuth } from './middlewares/google_auth';
+=======
+>>>>>>> uziel
 
 require('dotenv').config();
 
@@ -14,6 +17,7 @@ let port = process.env.PORT || 4000;
 const db_url = process.env.DB_URL;
 
 app.use(express.json());
+<<<<<<< HEAD
 googleAuth(app);
 app.use(routes);
 
@@ -32,6 +36,10 @@ io.on('connection', (socket) => {
   });
 });
 
+=======
+app.use(routes);
+
+>>>>>>> uziel
 async function start() {
   try {
     await mongoose.connect(db_url);

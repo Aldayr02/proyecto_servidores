@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+
 import { response_status } from '../utils/response_status';
+
 
 const auth_middleware = (req: Request, res: Response, next: NextFunction) => {
   console.log('Esta pasando un middleware para checar el token');
