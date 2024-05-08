@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export function createToken(data: Object) {
+export function create(data: Object) {
   return jwt.sign(data, process.env.KEY_TOKEN);
 }
 

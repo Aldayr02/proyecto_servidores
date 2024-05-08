@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { UsersController } from '../../src/controllers/users.controllers';
 import userModel from '../../src/models/users.models';
 import { response_status } from '../../src/utils/response_status';
-import { createToken } from '../../src/utils/token';
+import { create } from '../../src/utils/token';
 
 const userController = new UsersController();
 
@@ -158,7 +158,7 @@ describe('UsersController', () => {
         email: 'test@example.com',
         password: 'password123',
       });
-      expect(createToken).toHaveBeenCalled();
+      expect(create).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(response_status.SUCCESS);
       expect(res.send).toHaveBeenCalledWith({ token: 'token' });
     });
