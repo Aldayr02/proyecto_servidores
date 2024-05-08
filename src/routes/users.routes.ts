@@ -34,10 +34,14 @@ const userController = new UsersController();
  *       404:
  *         description: user not found
  */
-router.post('/signUp', userController.register);
+router.post('/singup', userController.register);
 
-router.get('/singUp', (req: Request, res: Response) => {
+router.get('/singup', (req: Request, res: Response) => {
   res.render('singup');
+});
+
+router.get('/successful-singup', (req: Request, res: Response) => {
+  res.render('successful-singup');
 });
 
 /**
