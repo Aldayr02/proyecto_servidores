@@ -1,5 +1,4 @@
 .login-container {
-
     position: absolute; /* Positioning relative to the nearest positioned ancestor (body in this case) */
     top: 50%; /* 50% from the top of the body */
     left: 50%; /* 50% from the left of the body */
@@ -55,7 +54,7 @@
 }
 
 /* Handle small screen sizes */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .login-container {
         margin: 10px;
         width: auto;

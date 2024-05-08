@@ -1,8 +1,9 @@
-import { Request, Response } from 'express';
 import User from '../models/users.models';
+import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
-import jwt from 'jsonwebtoken';
 import hashPassword from '../utils/hash_password';
+import { create } from '../utils/token';
+
 
 export class UsersController {
   register(req: Request, res: Response) {
@@ -27,22 +28,20 @@ export class UsersController {
         email : req.body.email,
         password : hashPassword(req.body.password)
     }
-
-    User.findOne(data).then(response => {
-        if(response) {
-            const data = {
-                name : response.name,
-                email : response.email,
-            }
-
-            const token = jwt.sign(data, process.env.TOKEN_KEY);
-            res.status(response_status.SUCCESS).send({token});                
-
-        } else {
-            res.status(response_status.UNAUTHORIZED).send('failed to login');
+    User.findOne(data)
+      .then((response) => {
+        if (response == null) {
+          throw new Error(`${response.errors.message}`);
         }
-    }).catch(e => {
-        res.status(response_status.BAD_REQUEST).send('failed to login');
-    })
-}
+        const user_data = {
+          name: response.name,
+          email: response.email,
+        };
+        const send_token = create(user_data);
+        res.status(response_status.SUCCESS).send({ token: send_token });
+      })
+      .catch((e) => {
+        res.status(response_status.BAD_REQUEST).send(`Invalid credentials - ${e}`);
+      });
+  }
 }
