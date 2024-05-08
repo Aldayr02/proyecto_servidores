@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { UsersController } from '../../src/controllers/users.controllers';
 import userModel from '../../src/models/users.models';
 import { response_status } from '../../src/utils/response_status';
+import { createToken } from '../../src/utils/token';
 
 const userController = new UsersController();
 
@@ -18,6 +19,20 @@ jest.mock('../../src/models/users.models', () => ({
     })
   ),
   updateOne: jest.fn().mockResolvedValue(Promise.resolve('')),
+}));
+
+jest.mock("../../src/utils/token.ts", () => ({
+  code: jest.fn().mockReturnValue("token"),
+}));
+
+// Mocking jwt.sign directamente si es necesario
+jest.mock('jsonwebtoken', () => ({
+  sign: jest.fn().mockReturnValue('mocked_token')
+}));
+
+// Mocking del módulo que contiene la función createToken
+jest.mock('../../src/utils/token', () => ({
+  createToken: jest.fn().mockReturnValue('mocked_token') // Asegúrate de que este token coincida con tus expectativas en las pruebas
 }));
 
 describe('UsersController', () => {
@@ -143,8 +158,9 @@ describe('UsersController', () => {
         email: 'test@example.com',
         password: 'password123',
       });
+      expect(createToken).toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(response_status.SUCCESS);
-      expect(res.send).toHaveBeenCalledWith({ token: '123' });
+      expect(res.send).toHaveBeenCalledWith({ token: 'token' });
     });
 
     test('should handle invalid credentials', async () => {
@@ -156,7 +172,7 @@ describe('UsersController', () => {
 
       // Assert
       expect(res.status).toHaveBeenCalledWith(response_status.UNAUTHORIZED);
-      expect(res.send).toHaveBeenCalledWith('Invalid credentials');
+      expect(res.send).toHaveBeenCalledWith('failed to login');
     });
 
     test('should handle generic errors', async () => {

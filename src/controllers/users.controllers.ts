@@ -1,13 +1,15 @@
 import { Request, Response } from 'express';
 import User from '../models/users.models';
 import { response_status } from '../utils/response_status';
+import jwt from 'jsonwebtoken';
+import hashPassword from '../utils/hash_password';
 
 export class UsersController {
   register(req: Request, res: Response) {
     const data = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: hashPassword(req.body.password),
       role: req.body.role,
     };
 
@@ -22,22 +24,25 @@ export class UsersController {
 
   login(req: Request, res: Response) {
     const data = {
-      email: req.body.email,
-      password: req.body.password,
-    };
+        email : req.body.email,
+        password : hashPassword(req.body.password)
+    }
 
-    console.log(data.email);
+    User.findOne(data).then(response => {
+        if(response) {
+            const data = {
+                name : response.name,
+                email : response.email,
+            }
 
-    User.findOne({ name: 'uzie' })
-      .then((response) => {
-        if (response == null) {
-          throw new Error(`${response.errors}`);
+            const token = jwt.sign(data, process.env.TOKEN_KEY);
+            res.status(response_status.SUCCESS).send({token});                
+
+        } else {
+            res.status(response_status.UNAUTHORIZED).send('failed to login');
         }
-
-        res.status(response_status.CREATED).send(`Valid credentials - ${response}`);
-      })
-      .catch((e) => {
-        res.status(response_status.CREATED).send(`Invalid credentials - ${e}`);
-      });
-  }
+    }).catch(e => {
+        res.status(response_status.BAD_REQUEST).send('failed to login');
+    })
+}
 }
