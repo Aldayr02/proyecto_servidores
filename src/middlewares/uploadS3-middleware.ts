@@ -3,10 +3,6 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import { S3Client } from '@aws-sdk/client-s3';
 
-console.log(process.env.S3_ACCESS_KEY);
-console.log(process.env.S3_SECRET_KEY);
-console.log(process.env.BUCKET_NAME);
-
 const s3 = new S3Client({
   region: process.env.S3_REGION,
   credentials: {
