@@ -23,16 +23,16 @@
         <div class='clearfix'>
 
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">95.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>47/47</span>
+                <span class='fraction'>45/47</span>
             </div>
 
 
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>6/7</span>
             </div>
 
 
@@ -44,9 +44,9 @@
 
 
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">95.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>47/47</span>
+                <span class='fraction'>45/47</span>
             </div>
 
 
@@ -117,6 +117,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -134,14 +135,15 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -149,18 +151,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from 'express';
-import User from '../models/users.models';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import User from '../models/users.models';
+import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
-import jwt from 'jsonwebtoken';
+import hashPassword from '../utils/hash_password';
+import { create } from '../utils/token';
 &nbsp;
 export class UsersController {
   register(req: Request, res: Response) {
@@ -182,27 +183,26 @@ export class UsersController {
 &nbsp;
   login(req: Request, res: Response) {
     const data = {
-        email : req.body.email,
-        password : req.body.password
-    }
-&nbsp;
-    User.findOne(data).then(response =&gt; {
-        if(response) {
-            const data = {
-                name : response.name,
-                email : response.email,
-            }
-&nbsp;
-            const token = jwt.sign(data, process.env.TOKEN_KEY);
-            res.status(response_status.SUCCESS).send({token});
-&nbsp;
-        } else {
-            res.status(response_status.UNAUTHORIZED).send('failed to login');
-        }
-    }).catch(e =&gt; {
-        res.status(response_status.BAD_REQUEST).send('failed to login');
-    })
-}
+      email: req.body.email,
+      password: req.body.password,
+    };
+    User.findOne(data)
+      .then((response) =&gt; {
+        if (response == null) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >          throw new Error(`${response.errors.message}`);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+        const user_data = {
+          name: response.name,
+          email: response.email,
+        };
+        //const send_token = create(user_data);
+        const token = '123';
+        res.status(response_status.SUCCESS).send({ token });
+      })
+      .catch((e) =&gt; {
+        res.status(response_status.BAD_REQUEST).send(`Invalid credentials - ${e}`);
+      });
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -211,7 +211,7 @@ export class UsersController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-08T04:46:22.949Z
+                at 2024-05-08T16:55:54.719Z
             </div>
         <script src="../prettify.js"></script>
         <script>

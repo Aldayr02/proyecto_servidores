@@ -4,13 +4,12 @@ import { response_status } from '../utils/response_status';
 import hashPassword from '../utils/hash_password';
 import { create } from '../utils/token';
 
-
 export class UsersController {
   register(req: Request, res: Response) {
     const data = {
       name: req.body.name,
       email: req.body.email,
-      password: hashPassword(req.body.password),
+      password: req.body.password,
       role: req.body.role,
     };
 
@@ -25,9 +24,9 @@ export class UsersController {
 
   login(req: Request, res: Response) {
     const data = {
-        email : req.body.email,
-        password : hashPassword(req.body.password)
-    }
+      email: req.body.email,
+      password: req.body.password,
+    };
     User.findOne(data)
       .then((response) => {
         if (response == null) {
@@ -37,8 +36,9 @@ export class UsersController {
           name: response.name,
           email: response.email,
         };
-        const send_token = create(user_data);
-        res.status(response_status.SUCCESS).send({ token: send_token });
+        //const send_token = create(user_data);
+        const token = '123';
+        res.status(response_status.SUCCESS).send({ token });
       })
       .catch((e) => {
         res.status(response_status.BAD_REQUEST).send(`Invalid credentials - ${e}`);
