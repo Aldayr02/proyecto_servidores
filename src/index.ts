@@ -28,6 +28,7 @@ app.set('views', './src/views');
 
 app.use(express.json());
 googleAuth(app);
+
 app.use(routes);
 
 const swaggerDocs = swaggerJSDoc(swaggerConfig);
@@ -37,6 +38,11 @@ async function start() {
   try {
     await mongoose.connect(db_url);
     console.log('Connected to database');
+    if (process.env.NODE_ENV === 'dev') {
+      app.use('/assets', express.static(path.join(__dirname, '../public')));
+    } else {
+      app.use('/assets', express.static(path.join(__dirname, '../../public')));
+    }
     const server = app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
