@@ -95,4 +95,6 @@ router.get(
   }
 );
 
+router.post('/add_novel', userController.add_novel);
+
 export default router;

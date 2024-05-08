@@ -75,33 +75,4 @@ export class NovelsController {
         res.send(e);
       });
   }
-
-  add_novel(req: Request, res: Response) {
-    const user = req.body.name;
-    const title = req.body.title;
-
-    NovelModel.findOne(user)
-      .then((response) => {
-        NovelModel.findOneAndUpdate(
-          { _id: response._id },
-          { $push: { library: title } },
-          { new: true }
-        )
-          .then((updatedNovel) => {
-            if (updatedNovel) {
-              res.send(updatedNovel);
-            } else {
-              res.status(404).send({ message: 'User not found' });
-            }
-          })
-          .catch((error) => {
-            res.status(500).send(error);
-          });
-      })
-      .catch((e) => {
-        res.send(e);
-      });
-
-    // Assuming `novelId` is the ID of the novel we want to update and `updateData` contains the fields we want to update
-  }
 }

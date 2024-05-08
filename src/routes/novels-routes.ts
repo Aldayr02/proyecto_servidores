@@ -148,6 +148,4 @@ router.post('/', Novel.create_novel);
  */
 router.delete('/:title', Novel.delete_novel);
 
-router.post('/add_novel', Novel.add_novel);
-
 export default router;
