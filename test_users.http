@@ -34,18 +34,33 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3001/novels/Shadow?token=123
+PUT http://localhost:3001/novels/?token=123
 Content-Type: application/json
 
 {
-    "title": "Shadow",
+    "title": "Mysteries",
     "author": "Ashtorias",
     "summary": "Sunny and Nephis",
     "rank": "1",
     "status": "Ongoing",
-    "categories": "[Fantasy]",
+    "categories": [Fantasy],
     "chapters": "1088",
     "comments": "[]",
+}
+
+###
+POST  http://localhost:3001/novels/create/novel?token=123
+Content-Type: application/json
+
+{
+  "title": "Mysteries",
+  "author": "SOI",
+  "summary": "Sunny and Nephis",
+  "rank": "1",
+  "status": "Ongoing",
+  "categories": ["Fantasy"],
+  "chapters": "1088",
+  "comments": []
 }
 
 
@@ -63,3 +78,18 @@ C:\Users\alday\Desktop\TECNOLOGIAS DE DESARROLLO EN EL SERVIDOR\proyecto_servido
 
 ###
 GET http://localhost:3000/google/callback
+
+###
+POST http://localhost:3001/users/add_novel
+Content-Type: application/json
+
+{
+    "name": "Aldair",
+    "title": "Shadow"
+}
+###
+
+GET http://localhost:3001/novels/Shadow?token=123
+
+###
+GET http://localhost:3001/novels/fetch/all?token=123

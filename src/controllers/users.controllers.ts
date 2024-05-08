@@ -1,9 +1,9 @@
 import User from '../models/users.models';
+import Novel from '../models/novels-model';
 import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
 import hashPassword from '../utils/hash_password';
 import { create } from '../utils/token';
-
 
 export class UsersController {
   register(req: Request, res: Response) {
@@ -25,9 +25,9 @@ export class UsersController {
 
   login(req: Request, res: Response) {
     const data = {
-        email : req.body.email,
-        password : hashPassword(req.body.password)
-    }
+      email: req.body.email,
+      password: hashPassword(req.body.password),
+    };
     User.findOne(data)
       .then((response) => {
         if (response == null) {
@@ -42,6 +42,33 @@ export class UsersController {
       })
       .catch((e) => {
         res.status(response_status.BAD_REQUEST).send(`Invalid credentials - ${e}`);
+      });
+  }
+
+  add_novel(req: Request, res: Response) {
+    const user = req.body.name;
+    const title = req.body.title;
+    User.findOne({ name: user })
+      .then((response) => {
+        if (response == null) {
+          throw new Error(`${response.errors.message}`);
+        }
+        const userId = response._id;
+        console.log(userId);
+        User.findOneAndUpdate({ _id: userId }, { $push: { library: title } }, { new: true }) // new: true to return the updated document
+          .then((updatedNovel) => {
+            if (updatedNovel) {
+              res.send(updatedNovel);
+            } else {
+              res.status(404).send({ message: 'User not found' });
+            }
+          })
+          .catch((error) => {
+            res.status(500).send(error);
+          });
+      })
+      .catch((e) => {
+        res.status(response_status.BAD_REQUEST).send(e);
       });
   }
 }

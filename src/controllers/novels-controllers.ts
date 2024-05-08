@@ -1,16 +1,23 @@
 import { Request, Response } from 'express';
-
 import { response_status } from '../utils/response_status';
 import NovelModel from '../models/novels-model';
 
 export class NovelsController {
-  get_novel(req: Request, res: Response) {
-    const data = {
-      title: req.body.title,
-      author: req.body.author,
-    };
+  all(req: Request, res: Response) {
+    NovelModel.find({})
+      .then((response) => {
+        res.render('lib', {
+          novels: response,
+        });
+      })
+      .catch((e) => {
+        res.send(e);
+      });
+  }
 
-    NovelModel.findOne(data)
+  get_novel(req: Request, res: Response) {
+    console.log('Pito');
+    NovelModel.findOne({ title: req.params.title })
       .then((response) => {
         res.send(response);
       })
@@ -62,12 +69,7 @@ export class NovelsController {
   }
 
   delete_novel(req: Request, res: Response) {
-    const data = {
-      title: req.body.title,
-      author: req.body.author,
-    };
-
-    NovelModel.deleteOne(data)
+    NovelModel.deleteOne({ title: req.params.title })
       .then((response) => {
         res.send(response);
       })
@@ -75,6 +77,4 @@ export class NovelsController {
         res.send(e);
       });
   }
-
-  add_novel(req: Request, res: Response) {}
 }

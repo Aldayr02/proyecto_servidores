@@ -5,10 +5,11 @@ require('dotenv').config();
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, default: process.env.USER_ROLE || 'user' }
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, default: process.env.USER_ROLE || 'user' },
+  library: { type: Array },
 });
 
 const User = mongoose.model('User', userSchema);

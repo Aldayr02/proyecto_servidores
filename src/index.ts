@@ -16,10 +16,15 @@ const app = express();
 let port = process.env.PORT || 4000;
 const db_url = process.env.DB_URL;
 
-app.engine('handlebars', engine());
+app.use('/assets', express.static(path.join(__dirname, '../public')));
+app.engine(
+  'handlebars',
+  engine({
+    runtimeOptions: { allowProtoPropertiesByDefault: true, allowProtoMethodsByDefault: true },
+  })
+);
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
-
 
 app.use(express.json());
 googleAuth(app);
@@ -33,7 +38,7 @@ async function start() {
   try {
     await mongoose.connect(db_url);
     console.log('Connected to database');
-    if (process.env.NODE_ENV === 'dev'){
+    if (process.env.NODE_ENV === 'dev') {
       app.use('/assets', express.static(path.join(__dirname, '../public')));
     } else {
       app.use('/assets', express.static(path.join(__dirname, '../../public')));
