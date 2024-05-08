@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const signUpButton = document.querySelector('#singUpButton');
   signUpButton.addEventListener('click', change_to_singup);
 
+  const GoogleButton = document.querySelector('#GoogleButton');
+  GoogleButton.addEventListener('click', google_post);
+
   const loginSubmit = document.querySelector('#loginSubmit');
   if (loginSubmit) {
     loginSubmit.addEventListener('click', (event) => {
@@ -103,4 +106,8 @@ function login_post() {
       alert(`${e}`);
     });
   //   console.log(`Log in post`);
+}
+
+function google_post() {
+  window.location.href = '/users/google';
 }
