@@ -34,11 +34,11 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3001/novels/Shadow?token=123
+PUT http://localhost:3001/novels/?token=123
 Content-Type: application/json
 
 {
-    "title": "Shadow",
+    "title": "Mysteries",
     "author": "Ashtorias",
     "summary": "Sunny and Nephis",
     "rank": "1",
@@ -74,4 +74,7 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:3001/novels/all_novels?token=123
+GET http://localhost:3001/novels/Shadow?token=123
+
+###
+GET http://localhost:3001/novels/fetch/all?token=123

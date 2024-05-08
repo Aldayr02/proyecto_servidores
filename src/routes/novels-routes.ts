@@ -49,6 +49,8 @@ router.use(auth_middleware);
  */
 router.get('/:title', Novel.get_novel);
 
+router.get('/fetch/all', Novel.all);
+
 /**
  * @swagger
  * /novels/{title}:
@@ -147,7 +149,5 @@ router.post('/', Novel.create_novel);
  *         description: Novel not found
  */
 router.delete('/:title', Novel.delete_novel);
-
-router.get('/all_novels', Novel.get_novels);
 
 export default router;
