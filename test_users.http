@@ -43,9 +43,24 @@ Content-Type: application/json
     "summary": "Sunny and Nephis",
     "rank": "1",
     "status": "Ongoing",
-    "categories": "[Fantasy]",
+    "categories": [Fantasy],
     "chapters": "1088",
     "comments": "[]",
+}
+
+###
+POST  http://localhost:3001/novels/create/novel?token=123
+Content-Type: application/json
+
+{
+  "title": "Mysteries",
+  "author": "SOI",
+  "summary": "Sunny and Nephis",
+  "rank": "1",
+  "status": "Ongoing",
+  "categories": ["Fantasy"],
+  "chapters": "1088",
+  "comments": []
 }
 
 

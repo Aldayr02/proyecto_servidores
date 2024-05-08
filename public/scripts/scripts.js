@@ -5,6 +5,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const signUpButton = document.querySelector('#singUpButton');
   signUpButton.addEventListener('click', change_to_singup);
 
+  const viewAllButton = document.querySelector('#viewAllButton');
+  viewAllButton.addEventListener('click', change_to_view_all);
+
+  const createButton = document.querySelector('#createButton');
+  createButton.addEventListener('click', change_to_create);
+
+  const yourLibButton = document.querySelector('#yourLibButton');
+  yourLibButton.addEventListener('click', change_to_yourLibButton);
+
   const loginSubmit = document.querySelector('#loginSubmit');
   if (loginSubmit) {
     loginSubmit.addEventListener('click', (event) => {
@@ -33,6 +42,22 @@ function change_to_singup() {
 }
 
 function change_to_successful_singup() {
+  console.log(`Changing to /users/successful-singup`);
+  window.location.href = '/users/successful-singup';
+}
+
+function change_to_view_all() {
+  const token = 123;
+  console.log(`Changing to /novels/fetch/all?token=123`);
+  window.location.href = '/novels/fetch/all?token=' + token;
+}
+
+function change_to_create() {
+  console.log(`Changing to /users/successful-singup`);
+  window.location.href = '/users/successful-singup';
+}
+
+function change_to_yourLibButton() {
   console.log(`Changing to /users/successful-singup`);
   window.location.href = '/users/successful-singup';
 }

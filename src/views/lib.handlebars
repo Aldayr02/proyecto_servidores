@@ -1,16 +1,14 @@
 <h1>Mis Novelas</h1>
-
-<p>Aqui esta la lista de Novelas</p>
-<ul>
-
-</ul>
+<p>Aquí está la lista de Novelas</p>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
       <th>Title</th>
-      <th>Completado</th>
+      <th>Author</th>
+      <th>Status</th>
+      <th>Add</th>
+      <!-- New column for action buttons -->
     </tr>
   </thead>
   <tbody>
@@ -18,7 +16,9 @@
       <tr>
         <td>{{title}}</td>
         <td>{{author}}</td>
-
+        <td><span class='{{statusClass}}'>{{status}}</span></td>
+        <td><button class='add-button'>Add</button></td>
+        <!-- Button in each row -->
       </tr>
     {{/each}}
   </tbody>

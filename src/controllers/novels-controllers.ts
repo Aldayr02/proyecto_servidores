@@ -6,8 +6,6 @@ export class NovelsController {
   all(req: Request, res: Response) {
     NovelModel.find({})
       .then((response) => {
-        // res.send(response);
-        console.log(response);
         res.render('lib', {
           novels: response,
         });

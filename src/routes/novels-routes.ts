@@ -127,7 +127,7 @@ router.put('/:title', Novel.update_novel);
  *       404:
  *         description: Novel not found
  */
-router.post('/', Novel.create_novel);
+router.post('/create/novel', Novel.create_novel);
 
 /**
  * @swagger
