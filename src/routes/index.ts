@@ -21,7 +21,7 @@ router.use('/google', userRoutes);
  *        description: Bad Request
  */
 router.get('/', (req: Request, res: Response) => {
-  res.send('router works!');
+  res.render('home');
 });
 
 export default router;

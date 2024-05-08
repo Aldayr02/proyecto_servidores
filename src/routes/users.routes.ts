@@ -34,7 +34,15 @@ const userController = new UsersController();
  *       404:
  *         description: user not found
  */
-router.post('/signUp', userController.register);
+router.post('/singup', userController.register);
+
+router.get('/singup', (req: Request, res: Response) => {
+  res.render('singup');
+});
+
+router.get('/successful-singup', (req: Request, res: Response) => {
+  res.render('successful-singup');
+});
 
 /**
  * @swagger
@@ -61,6 +69,10 @@ router.post('/signUp', userController.register);
  *         description: user not found
  */
 router.post('/login', userController.login);
+
+router.get('/login', (req: Request, res: Response) => {
+  res.render('login');
+});
 
 router.post('/s3upload', uploadS3.single('foto'), (req: Request, res: Response) => {
   res.send(`Image uploaded`);

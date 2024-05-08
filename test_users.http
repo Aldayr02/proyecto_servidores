@@ -2,14 +2,13 @@
 GET http://localhost:3000
 
 ### register
-POST http://localhost:3000/users/signUp
+POST http://localhost:3001/users/singup
 Content-Type: application/json
 
 {
-    "name": "uziel",
-    "email": "uziel@email.com",
-    "password": "123456",
-    "role": "admin"
+    "name": "a",
+    "email": "a@email.com",
+    "password": "123"
 }
 
 ###
@@ -18,20 +17,19 @@ POST http://localhost:3001/users/login
 Content-Type: application/json
 
 {
-    "email": "u@email.com",
+    "email": "a@email.com",
     "password": "123"
 }
 
 ###
 
-POST http://localhost:3001/users/signUp
+POST http://localhost:3001/users/singup
 Content-Type: application/json
 
 {
-    "name": "uziel",
-    "email": "uziel@email.com",
-    "password": "123456",
-    "role": "admin"
+    "name": "as",
+    "email": "as@gmail.com",
+    "password": "123"
 }
 
 
