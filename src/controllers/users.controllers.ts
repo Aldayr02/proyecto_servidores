@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
 import User from '../models/users.models';
+import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
 import { create } from '../utils/token';
 
