@@ -1,14 +1,16 @@
 import User from '../models/users.models';
 import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
+import hashPassword from '../utils/hash_password';
 import { create } from '../utils/token';
+
 
 export class UsersController {
   register(req: Request, res: Response) {
     const data = {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: hashPassword(req.body.password),
       role: req.body.role,
     };
 
@@ -23,12 +25,9 @@ export class UsersController {
 
   login(req: Request, res: Response) {
     const data = {
-      email: req.body.email,
-      password: req.body.password,
-    };
-
-    console.log(data.email);
-
+        email : req.body.email,
+        password : hashPassword(req.body.password)
+    }
     User.findOne(data)
       .then((response) => {
         if (response == null) {
