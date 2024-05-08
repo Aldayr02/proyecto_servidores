@@ -36,6 +36,10 @@ const userController = new UsersController();
  */
 router.post('/signUp', userController.register);
 
+router.get('/singUp', (req: Request, res: Response) => {
+  res.render('singup');
+});
+
 /**
  * @swagger
  * /users/login:
@@ -61,6 +65,10 @@ router.post('/signUp', userController.register);
  *         description: user not found
  */
 router.post('/login', userController.login);
+
+router.get('/login', (req: Request, res: Response) => {
+  res.render('login');
+});
 
 router.post('/s3upload', uploadS3.single('foto'), (req: Request, res: Response) => {
   res.send(`Image uploaded`);

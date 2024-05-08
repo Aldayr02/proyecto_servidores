@@ -4,8 +4,10 @@ import routes from './routes';
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { swaggerConfig } from './../swagger.config';
-// import { googleAuth } from './middlewares/google_auth';
+import { googleAuth } from './middlewares/google_auth';
 import { Server } from 'socket.io';
+import { engine } from 'express-handlebars';
+import path from 'path';
 
 require('dotenv').config();
 
@@ -14,8 +16,13 @@ const app = express();
 let port = process.env.PORT || 4000;
 const db_url = process.env.DB_URL;
 
+app.use('/assets', express.static(path.join(__dirname, '../public')));
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './src/views');
+
 app.use(express.json());
-// googleAuth(app);
+googleAuth(app);
 app.use(routes);
 
 const swaggerDocs = swaggerJSDoc(swaggerConfig);
