@@ -76,5 +76,7 @@ export class NovelsController {
       });
   }
 
-  add_novel(req: Request, res: Response) {}
+  add_novel(req: Request, res: Response) {
+    const title = req.body.title;
+  }
 }
