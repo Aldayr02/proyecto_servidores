@@ -48,8 +48,9 @@ App similar to goodreads to save books, novels and documents
   - To merge something to the branches it is needed to create a pull request and that pull request have to pass all the checks and minimum one review
   - The new created branches needs to be name after the feature that is going to be working in that branch
 - **Checks/Tests**:
-  - Linter
+  - Super-Linter
   - Pre-commit
+  - Conventional commit
 - **Release process**:
 
   - Main (Develop): This branch is going to be use for the general development of the project
