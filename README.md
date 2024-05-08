@@ -10,7 +10,7 @@ App similar to goodreads to save books, novels and documents
 - From a **developer perspective**:
 
       npm install
-      npm start
+      npm run dev
       https//localhost:3000
 
 ## How to contribute
