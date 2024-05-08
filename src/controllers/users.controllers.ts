@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import User from '../models/users.models';
 import { response_status } from '../utils/response_status';
+import { create } from '../utils/token';
 
 export class UsersController {
   register(req: Request, res: Response) {
@@ -28,16 +29,20 @@ export class UsersController {
 
     console.log(data.email);
 
-    User.findOne({ name: 'uzie' })
+    User.findOne(data)
       .then((response) => {
         if (response == null) {
-          throw new Error(`${response.errors}`);
+          throw new Error(`${response.errors.message}`);
         }
-
-        res.status(response_status.CREATED).send(`Valid credentials - ${response}`);
+        const user_data = {
+          name: response.name,
+          email: response.email,
+        };
+        const send_token = create(user_data);
+        res.status(response_status.SUCCESS).send({ token: send_token });
       })
       .catch((e) => {
-        res.status(response_status.CREATED).send(`Invalid credentials - ${e}`);
+        res.status(response_status.BAD_REQUEST).send(`Invalid credentials - ${e}`);
       });
   }
 }

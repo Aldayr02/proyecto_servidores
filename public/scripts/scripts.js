@@ -99,7 +99,7 @@ function login_post() {
       window.location.href = '/';
     })
     .catch((e) => {
-      console.log(`Something wrong login_post - ${e}`);
+      console.log(`Something wrong login_post - invalid credential ${e}`);
       alert(`${e}`);
     });
   //   console.log(`Log in post`);
