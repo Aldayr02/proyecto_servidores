@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import { response_status } from '../utils/response_status';
 import NovelModel from '../models/novels-model';
 
-
 export class NovelsController {
   get_novel(req: Request, res: Response) {
     const data = {
@@ -76,4 +75,6 @@ export class NovelsController {
         res.send(e);
       });
   }
+
+  add_novel(req: Request, res: Response) {}
 }
