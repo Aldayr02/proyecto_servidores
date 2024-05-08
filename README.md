@@ -1,32 +1,60 @@
-# Project Title
+# WEBNOVEL APP
 
-## Description
-Provide a brief description of what your project does and what problem it solves. Explain the motivation behind the project and any interesting details that can help others understand why it was created.
+## Purpose/Description
+App similar to goodreads to save books, novels and documents
 
-## Tools Used
-List all the tools, libraries, and frameworks you used in this project. Include versions if necessary to help others set up the same environment.
+## How does it work
 
-- Tool 1 (e.g., Node.js, version 12.18.3)
-- Tool 2 (e.g., Express, version 4.17.1)
-- Tool 3 (e.g., MongoDB, version 4.4)
+- From a **user perspective**: [deploys](https://backend-ewc9.onrender.com)
 
-## Requirements
-Describe any prerequisites, libraries, or any other dependencies that are required to install and run the project. This could include software, environment variables, or external services.
+- From a **developer perspective**:
 
-- Requirement 1 (e.g., npm version 6 or higher)
-- Requirement 2 (e.g., Python 3.8)
-- Requirement 3 (e.g., A local or cloud-based MongoDB database)
+      npm install
+      npm start
+      https//localhost:3000
 
-## How to Run/Start the App
-Provide detailed instructions on how to get a development environment running. Include steps to install, configure, and run the project.
+## How to contribute
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/your-project-name.git
-cd your-project-name
+- **Repo/Folder structure**: [MVC pattern](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
 
-# Install dependencies
-npm install
+  - Controllers
+  - Middlewares
+  - Routes
+  - Utils
+  - Models
 
-# Run the application
-npm start
+- **Tools**:
+  - Javascript
+  - Jest
+  - HTML
+  - CSS
+  - Handlebars
+  - MongoDB
+  - Python
+  - Pre-commit
+- **Requirements**:
+  - Node.js
+  - Git
+  - Repository permissions (To ask for permissions contact a code owner)
+
+### Contribution Process
+
+- **Commit**:
+
+  - Use of the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+  - Recommended to use the [gitmoji](https://gitmoji.dev/) to make the commits more readable
+  - If vs code is used, the [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) extension is recommended
+
+- **Pull request creation**:
+  - To merge something to the branches it is needed to create a pull request and that pull request have to pass all the checks and minimum one review
+  - The new created branches needs to be name after the feature that is going to be working in that branch
+- **Checks/Tests**:
+  - Linter
+  - Pre-commit
+- **Release process**:
+
+  - Main (Develop): This branch is going to be use for the general development of the project
+  - Test: This branch is going to be use for the system test so it enables the merge to production
+  - Production: This branch its the main versioning for the main app
+
+
