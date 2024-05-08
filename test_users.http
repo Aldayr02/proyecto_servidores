@@ -72,3 +72,6 @@ Content-Type: application/json
     "name": "Aldair",
     "title": "Shadow"
 }
+###
+
+GET http://localhost:3001/novels/all_novels?token=123

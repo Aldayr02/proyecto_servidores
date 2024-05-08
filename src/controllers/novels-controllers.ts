@@ -4,6 +4,16 @@ import { response_status } from '../utils/response_status';
 import NovelModel from '../models/novels-model';
 
 export class NovelsController {
+  get_novels(req: Request, res: Response) {
+    NovelModel.find({})
+      .then((response) => {
+        res.send(response);
+      })
+      .catch((e) => {
+        res.send(e);
+      });
+  }
+
   get_novel(req: Request, res: Response) {
     const data = {
       title: req.body.title,

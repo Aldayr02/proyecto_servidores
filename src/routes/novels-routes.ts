@@ -148,4 +148,6 @@ router.post('/', Novel.create_novel);
  */
 router.delete('/:title', Novel.delete_novel);
 
+router.get('/all_novels', Novel.get_novels);
+
 export default router;
