@@ -42,7 +42,6 @@ App similar to goodreads to save books, novels and documents
 - **Commit**:
 
   - Use of the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
-  - Recommended to use the [gitmoji](https://gitmoji.dev/) to make the commits more readable
   - If vs code is used, the [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) extension is recommended
 
 - **Pull request creation**:
